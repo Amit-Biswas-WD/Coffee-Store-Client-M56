@@ -1,11 +1,38 @@
 import { CiEdit } from "react-icons/ci";
 import { IoEyeOutline } from "react-icons/io5";
 import { MdOutlineDelete } from "react-icons/md";
+import Swal from "sweetalert2";
 
 const CoffeeCard = ({ coffee }) => {
   const { _id, name, chef, supplier, taste, category, details, photo } = coffee;
 
-
+  const handleDelete = (id) => {
+    console.log(id);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/coffee/${_id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+            });
+          });
+      }
+    });
+  };
 
   return (
     <div className="bg-[#F5F4F1] w-[648px] h-[300px] grid grid-cols-6 gap-4 items-center">
@@ -47,7 +74,7 @@ const CoffeeCard = ({ coffee }) => {
             </span>
           </h2>
           <button
-
+            onClick={() => handleDelete(_id)}
             className="my-4 max-w-[24px] max-h-[28px] text-white bg-[#EA4744] rounded-sm mr-8"
           >
             <MdOutlineDelete className="w-6 h-auto" />
