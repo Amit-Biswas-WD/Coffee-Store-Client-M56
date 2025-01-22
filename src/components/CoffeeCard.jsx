@@ -1,6 +1,7 @@
 import { CiEdit } from "react-icons/ci";
 import { IoEyeOutline } from "react-icons/io5";
 import { MdOutlineDelete } from "react-icons/md";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const CoffeeCard = ({ coffee }) => {
@@ -51,9 +52,11 @@ const CoffeeCard = ({ coffee }) => {
               {name}
             </span>
           </h2>
-          <button className="my-4 w-[24px] text-white bg-[#D2B48C] rounded-sm mr-8">
-            <IoEyeOutline className="w-6 h-auto" />
-          </button>
+          <Link>
+            <button className="my-4 w-[24px] text-white bg-[#D2B48C] rounded-sm mr-8">
+              <IoEyeOutline className="w-6 h-auto" />
+            </button>
+          </Link>
         </div>
         <div className="flex justify-between">
           <h2 className="text-xl text-[#1B1A1A] font-semibold my-4">
@@ -62,9 +65,11 @@ const CoffeeCard = ({ coffee }) => {
               {chef}
             </span>
           </h2>
-          <button className="my-4 w-[24px] text-white bg-[#3C393B] rounded-sm mr-8">
-            <CiEdit className="w-6 h-auto" />
-          </button>
+          <Link to={`/updateCoffee/${_id}`}>
+            <button className="my-4 w-[24px] text-white bg-[#3C393B] rounded-sm mr-8">
+              <CiEdit className="w-6 h-auto" />
+            </button>
+          </Link>
         </div>
         <div className="flex justify-between">
           <h2 className="text-xl text-[#1B1A1A] font-semibold my-4">
