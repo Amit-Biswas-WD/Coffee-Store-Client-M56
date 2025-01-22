@@ -1,12 +1,10 @@
-import { CiEdit } from "react-icons/ci";
-import { IoEyeOutline } from "react-icons/io5";
-import { MdOutlineDelete } from "react-icons/md";
 import { useLoaderData } from "react-router-dom";
 import CoffeeCard from "./components/CoffeeCard";
+import { useState } from "react";
 
 function App() {
-  const coffees = useLoaderData();
-  console.log(coffees);
+  const loadedCoffees = useLoaderData();
+  const [coffees, setCoffees] = useState(loadedCoffees);
 
   return (
     <div className="container mx-auto">
@@ -15,7 +13,12 @@ function App() {
       </h1>
       <div className="grid grid-cols-2 gap-x-20 gap-y-10">
         {coffees.map((coffee) => (
-          <CoffeeCard key={coffee._id} coffee={coffee} />
+          <CoffeeCard
+            key={coffee._id}
+            coffees={coffees}
+            setCoffees={setCoffees}
+            coffee={coffee}
+          />
         ))}
       </div>
     </div>
