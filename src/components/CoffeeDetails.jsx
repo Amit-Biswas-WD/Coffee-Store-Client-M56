@@ -1,7 +1,7 @@
 import { Link, useLoaderData } from "react-router-dom";
 
 const CoffeeDetails = () => {
-  const coffee = useLoaderData(); // Single coffee object
+  const coffee = useLoaderData(); 
   const { name, chef, supplier, taste, category, details, photo } = coffee;
 
   return (
