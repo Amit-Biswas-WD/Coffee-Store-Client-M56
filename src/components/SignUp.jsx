@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FaEyeSlash } from "react-icons/fa";
 import { IoIosEye } from "react-icons/io";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../provider/AuthProvider";
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const { createUser } = useContext(AuthContext);
 
   const handleSignUpForm = (event) => {
     event.preventDefault();
@@ -14,6 +16,14 @@ const SignUp = () => {
     const password = form.password.value;
     const value = { name, email, password };
     console.log(value);
+    
+    createUser(email, password)
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -92,8 +102,8 @@ const SignUp = () => {
             <div className="form-control mt-6">
               <button className="btn btn-primary">Sign Up</button>
             </div>
-            <Link className="text-end my-2" to={`/login`}>
-              Click Here to <span className="text-blue-900">Login</span>
+            <Link className="text-end my-2" to={`/sign-in`}>
+              Click Here to <span className="text-green-700">Sign In</span>
             </Link>
           </form>
         </div>

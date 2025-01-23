@@ -2,16 +2,17 @@ import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const items = [
-    <li>
+    <li key="home">
       <NavLink to={`/`}>Home</NavLink>
     </li>,
-    <li>
+    <li key="sign-up">
       <NavLink to={`/sign-up`}>Sign Up</NavLink>
     </li>,
-    <li>
+    <li key="sign-in">
       <NavLink to={`/sign-in`}>Sign In</NavLink>
     </li>,
   ];
+
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start">
