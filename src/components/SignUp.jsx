@@ -3,6 +3,7 @@ import { FaEyeSlash } from "react-icons/fa";
 import { IoIosEye } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -14,12 +15,29 @@ const SignUp = () => {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
+    const photo = form.photo.value;
     const value = { name, email, password };
     console.log(value);
-    
+
     createUser(email, password)
       .then((result) => {
         console.log(result.user);
+        const createdAt = result.user.metadata.creationTime;
+        const newUser = { name, email, photo, createdAt };
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(newUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.insertedId) {
+              toast("Create User Successfully!");
+            }
+          });
       })
       .catch((err) => {
         console.log(err);
