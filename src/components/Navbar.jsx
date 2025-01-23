@@ -11,6 +11,9 @@ const Navbar = () => {
     <li key="sign-in">
       <NavLink to={`/sign-in`}>Sign In</NavLink>
     </li>,
+    <li key="users">
+      <NavLink to={`/users`}>Users</NavLink>
+    </li>,
   ];
 
   return (

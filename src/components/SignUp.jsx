@@ -103,19 +103,6 @@ const SignUp = () => {
               >
                 {showPassword ? <FaEyeSlash /> : <IoIosEye />}
               </p>
-              <label className="label">
-                <a href="#" className="label-text-alt link link-hover">
-                  Forgot password?
-                </a>
-              </label>
-            </div>
-            <div className="form-control">
-              <label className="label cursor-pointer">
-                <input type="checkbox" name="trams" className="checkbox" />
-                <span className="label-text">
-                  Accepts Our Teams And Conditions
-                </span>
-              </label>
             </div>
             <div className="form-control mt-6">
               <button className="btn btn-primary">Sign Up</button>
