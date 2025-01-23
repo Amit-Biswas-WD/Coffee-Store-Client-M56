@@ -54,7 +54,7 @@ const CoffeeCard = ({ coffee, coffees, setCoffees }) => {
               {name}
             </span>
           </h2>
-          <Link>
+          <Link to={`/coffeeDetails/${_id}`}>
             <button className="my-4 w-[24px] text-white bg-[#D2B48C] rounded-sm mr-8">
               <IoEyeOutline className="w-6 h-auto" />
             </button>
