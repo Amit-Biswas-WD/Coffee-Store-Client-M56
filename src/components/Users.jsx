@@ -56,6 +56,7 @@ const Users = () => {
               <th>Name</th>
               <th>Email</th>
               <th>Create Time</th>
+              <th>last SignIn Time</th>
               <th>Edit</th>
               <th>Delete</th>
             </tr>
@@ -68,6 +69,7 @@ const Users = () => {
                 <td>{user?.name}</td>
                 <td>{user?.email}</td>
                 <td>{user?.createdAt}</td>
+                <td>{user?.lastSignInTime}</td>
                 <td className="text-green-500 font-bold">
                   <Link to={`/user-edit/${user._id}`}>
                     <button onClick={() => handleUser(user._id)}>
