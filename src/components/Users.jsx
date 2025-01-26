@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { CiEdit } from "react-icons/ci";
 import { MdDelete } from "react-icons/md";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const Users = () => {
-  const loadedDta = useLoaderData();
-  const [users, setUsers] = useState(loadedDta);
+  const loadedData = useLoaderData();
+  const [users, setUsers] = useState(loadedData);
 
   const handleDeleteUser = (id) => {
     console.log("Delete User", id);
@@ -39,7 +39,11 @@ const Users = () => {
       }
     });
   };
-  
+
+  const handleUser = (id) => {
+    console.log(id);
+  };
+
   return (
     <div>
       Users: {users.length}
@@ -65,9 +69,11 @@ const Users = () => {
                 <td>{user?.email}</td>
                 <td>{user?.createdAt}</td>
                 <td className="text-green-500 font-bold">
-                  <button>
-                    <CiEdit />
-                  </button>
+                  <Link to={`/user-edit/${user._id}`}>
+                    <button onClick={() => handleUser(user._id)}>
+                      <CiEdit />
+                    </button>
+                  </Link>
                 </td>
                 <td className="text-red-600">
                   <button onClick={() => handleDeleteUser(user._id)}>

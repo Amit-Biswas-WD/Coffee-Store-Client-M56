@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FaEyeSlash } from "react-icons/fa";
 import { IoIosEye } from "react-icons/io";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../provider/AuthProvider";
 
 const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const { SignInUser } = useContext(AuthContext);
 
   const handleSignInForm = (event) => {
     event.preventDefault();
@@ -13,6 +15,14 @@ const SignIn = () => {
     const password = form.password.value;
     const value = { email, password };
     console.log(value);
+
+    SignInUser(email, password)
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (

@@ -7,6 +7,7 @@ import SignUp from "../components/SignUp";
 import SignIn from "./../components/SignIn";
 import Main from "../Main/Main";
 import Users from "../components/Users";
+import UserEdit from "../components/UserEdit";
 
 export const router = createBrowserRouter([
   {
@@ -46,6 +47,12 @@ export const router = createBrowserRouter([
         path: "/users",
         element: <Users />,
         loader: () => fetch("http://localhost:5000/users"),
+      },
+      {
+        path: "/user-edit/:id",
+        element: <UserEdit />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/users/${params.id}`),
       },
     ],
   },
